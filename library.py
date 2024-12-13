@@ -7,6 +7,7 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
+
 # Клас для зберігання інформації про книгу
 class Book:
     def __init__(self, title: str, author: str, year: int) -> None:
@@ -99,19 +100,23 @@ def main() -> None:
                     year: int = int(year_input)
                     manager.add_book(title, author, year)
                 except ValueError:
-                    logging.info("Invalid year. Please enter a valid integer for the year.")
+                    logging.info(
+                        "Invalid year. Please enter a valid integer for the year."
+                    )
             case "remove":
                 title: str = input("Enter book title to remove: ").strip()
                 manager.remove_book(title)
             case "show":
                 manager.show_books()
             case "exit":
-                confirm = input("Are you sure you want to exit? (yes/no): ").strip().lower()
+                confirm = (
+                    input("Are you sure you want to exit? (yes/no): ").strip().lower()
+                )
                 if confirm == "yes":
                     logging.info("Goodbye!")
                     break
                 else:
-                     logging.info("Exit cancelled. Continuing...")
+                    logging.info("Exit cancelled. Continuing...")
 
             case _:
                 logging.warning("Invalid command. Please try again.")
